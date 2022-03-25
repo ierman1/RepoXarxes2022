@@ -1,8 +1,10 @@
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Scanner;
 
+/**
+ * @author Marc Fernández Parra
+ * @author Germán Pérez Bordera
+ */
 public class Client {
 
     private final Socket socket;
@@ -18,10 +20,10 @@ public class Client {
     }
 
     public void start() {
-        ReadThread rt = new ReadThread(this.socket);
+        ReadThread rt = new ReadThread(this.socket, ReadThread.SERVER);
         rt.start();
 
-        WriteThread wt = new WriteThread(this.socket, WriteThread.CLIENT);
+        WriteThread wt = new WriteThread(this.socket);
         wt.start();
     }
 

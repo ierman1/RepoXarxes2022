@@ -1,8 +1,11 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
+/**
+ * @author Marc Fernández Parra
+ * @author Germán Pérez Bordera
+ */
 public class Server {
 
     public static String HOST = "localhost";
@@ -26,10 +29,10 @@ public class Server {
             Socket client = this.socket.accept();
             System.out.println("Client online.");
 
-            ReadThread rt = new ReadThread(client);
+            ReadThread rt = new ReadThread(client, ReadThread.CLIENT);
             rt.start();
 
-            WriteThread wt = new WriteThread(client, WriteThread.SERVER);
+            WriteThread wt = new WriteThread(client);
             wt.start();
         } catch (IOException e) {
             e.printStackTrace();
